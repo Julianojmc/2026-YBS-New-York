@@ -425,6 +425,161 @@
     .firms-grid { flex-direction: column; align-items: center; }
   }
 
+  /* ── GALLERY ── */
+  #gallery { background: var(--off-white); }
+  .gallery-header-row {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px; margin-bottom: 36px;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .gallery-card {
+    background: var(--card-bg); border-radius: var(--radius-sm);
+    overflow: hidden; box-shadow: var(--shadow);
+    border: 1px solid var(--border); cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .gallery-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .gallery-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+  .gallery-card-inner { position: relative; }
+  .gallery-card-delete {
+    position: absolute; top: 8px; right: 8px;
+    width: 30px; height: 30px; border-radius: 50%; border: none;
+    background: rgba(220,38,38,0.85); color: #fff; font-size: 0.85rem;
+    cursor: pointer; display: none; align-items: center; justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3); transition: background 0.2s;
+    z-index: 10;
+  }
+  .gallery-card-delete:hover { background: var(--red); }
+  .gallery-unlocked .gallery-card-delete { display: flex; }
+  .gallery-card-caption {
+    padding: 10px 14px; font-size: 0.8rem; color: var(--ink-soft);
+    font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .gallery-empty {
+    grid-column: 1/-1; text-align: center; padding: 60px 20px;
+    color: var(--ink-soft); font-size: 0.9rem;
+  }
+  .gallery-empty svg { width: 48px; height: 48px; opacity: 0.25; margin-bottom: 12px; display: block; margin-inline: auto; }
+  .gallery-status { font-size: 0.78rem; color: var(--ink-soft); margin-top: 20px; text-align: center; min-height: 20px; }
+  .gallery-upload-toggle {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.07em;
+    text-transform: uppercase; cursor: pointer;
+    color: var(--blue); background: var(--sky);
+    border: 1px solid rgba(26,86,219,0.15); border-radius: 100px;
+    padding: 8px 18px; transition: background 0.2s;
+  }
+  .gallery-upload-toggle:hover { background: #dbeafe; }
+  .gallery-upload-panel {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 28px 32px;
+    margin-bottom: 36px; box-shadow: var(--shadow); display: none;
+  }
+  .gallery-upload-panel.open { display: block; }
+  .gallery-upload-panel h4 {
+    font-size: 0.85rem; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--blue); margin-bottom: 18px;
+  }
+  .gup-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+  .gup-input {
+    flex: 1; min-width: 180px; padding: 10px 14px;
+    border: 1px solid var(--border); border-radius: var(--radius-sm);
+    font-family: var(--sans); font-size: 0.85rem; color: var(--ink);
+    background: var(--off-white); outline: none; transition: border-color 0.2s;
+  }
+  .gup-input:focus { border-color: var(--blue); }
+  .gup-drop {
+    border: 2px dashed rgba(26,86,219,0.2); border-radius: var(--radius-sm);
+    padding: 28px; text-align: center; cursor: pointer;
+    font-size: 0.85rem; color: var(--ink-soft); margin-bottom: 14px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .gup-drop.drag-over { border-color: var(--blue); background: var(--sky); }
+  .gup-drop input[type=file] { display: none; }
+  .gup-preview { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .gup-preview img { width: 72px; height: 72px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); }
+  .gup-submit {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+    color: #fff; border: none; border-radius: 100px;
+    padding: 11px 28px; font-family: var(--sans); font-size: 0.82rem;
+    font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+    cursor: pointer; transition: opacity 0.2s;
+  }
+  .gup-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+  .gup-msg { margin-top: 12px; font-size: 0.8rem; font-weight: 500; min-height: 20px; }
+  .gup-msg.success { color: var(--green); }
+  .gup-msg.error { color: var(--red); }
+  .gallery-passcode-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 18px; }
+  .gallery-passcode-row input {
+    padding: 9px 14px; border: 1px solid var(--border);
+    border-radius: var(--radius-sm); font-family: var(--sans);
+    font-size: 0.85rem; color: var(--ink); background: var(--off-white);
+    outline: none; transition: border-color 0.2s; width: 180px;
+  }
+  .gallery-passcode-row input:focus { border-color: var(--blue); }
+  .gallery-passcode-row button {
+    padding: 9px 20px; border-radius: 100px; border: none;
+    background: var(--blue); color: #fff; font-family: var(--sans);
+    font-size: 0.8rem; font-weight: 600; cursor: pointer;
+  }
+  .gup-progress { height: 4px; background: var(--border); border-radius: 100px; overflow: hidden; margin-bottom: 10px; display: none; }
+  .gup-progress-bar { height: 100%; background: var(--blue); border-radius: 100px; width: 0%; transition: width 0.3s; }
+  .glb-overlay {
+    position: fixed; inset: 0; z-index: 9000;
+    background: rgba(13,21,32,0.95); display: none;
+    align-items: center; justify-content: center; padding: 24px;
+  }
+  .glb-overlay.open { display: flex; }
+  .glb-box {
+    position: relative; max-width: 880px; width: 100%;
+    background: var(--card-bg); border-radius: var(--radius);
+    overflow: hidden; box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+  }
+  .glb-box img { width: 100%; max-height: 72vh; object-fit: contain; display: block; background: #000; transition: opacity 0.2s; }
+  .glb-box img.glb-fade { opacity: 0; }
+  .glb-caption {
+    padding: 12px 20px; font-size: 0.85rem; color: var(--ink-soft);
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .glb-counter { font-size: 0.75rem; color: var(--ink-soft); opacity: 0.6; white-space: nowrap; }
+  .glb-close {
+    position: absolute; top: 12px; right: 14px;
+    width: 36px; height: 36px; border-radius: 50%; border: none;
+    background: rgba(13,21,32,0.6); color: #fff; font-size: 1.1rem;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s; z-index: 10;
+  }
+  .glb-close:hover { background: var(--red); }
+  .glb-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 44px; height: 44px; border-radius: 50%; border: none;
+    background: rgba(13,21,32,0.55); color: #fff; font-size: 1.2rem;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s; z-index: 10; backdrop-filter: blur(4px);
+  }
+  .glb-arrow:hover { background: var(--blue); }
+  .glb-arrow.prev { left: 12px; }
+  .glb-arrow.next { right: 12px; }
+  .glb-arrow:disabled { opacity: 0.2; cursor: default; }
+  .glb-dots {
+    display: flex; justify-content: center; gap: 6px;
+    padding: 0 20px 14px; flex-wrap: wrap;
+  }
+  .glb-dot {
+    width: 7px; height: 7px; border-radius: 50%; border: none;
+    background: var(--border); cursor: pointer; padding: 0; transition: background 0.2s, transform 0.2s;
+  }
+  .glb-dot.active { background: var(--blue); transform: scale(1.3); }
+  @media (max-width: 600px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .gallery-upload-panel { padding: 20px; }
+    .glb-arrow { width: 36px; height: 36px; font-size: 1rem; }
+  }
+
 </style>
 </head>
 <body>
@@ -447,6 +602,7 @@
     <li><a href="#expectations">PBIS</a></li>
     <li><a href="#memberships">Memberships</a></li>
     <li><a href="#expenses">Expenses</a></li>
+    <li><a href="#gallery">Gallery</a></li>
   </ul>
 </nav>
 
@@ -1001,6 +1157,77 @@
   </div>
 </section>
 
+<!-- GALLERY -->
+<section id="gallery" class="section">
+  <div class="section-inner">
+
+    <div class="gallery-header-row">
+      <div>
+        <div class="section-eyebrow">Trip Memories</div>
+        <h2 class="section-title" style="margin-bottom:0;">Photo Gallery</h2>
+      </div>
+      <button class="gallery-upload-toggle" id="galleryToggleBtn" onclick="galleryToggleUpload()">+ Add Photo</button>
+    </div>
+
+    <!-- Upload Panel -->
+    <div class="gallery-upload-panel" id="galleryUploadPanel">
+      <h4>Upload Photo</h4>
+      <div id="galleryPasscodeGate">
+        <p style="font-size:0.82rem;color:var(--ink-soft);margin-bottom:12px;">Enter the admin passcode to upload photos.</p>
+        <div class="gallery-passcode-row">
+          <input type="password" id="galleryPasscodeInput" placeholder="Passcode" onkeydown="if(event.key==='Enter')galleryCheckPasscode()">
+          <button onclick="galleryCheckPasscode()">Unlock</button>
+        </div>
+        <div id="galleryPasscodeMsg" class="gup-msg error"></div>
+      </div>
+      <div id="galleryUploadForm" style="display:none;">
+        <div class="gup-drop" id="galleryDropZone" onclick="document.getElementById('galleryFileInput').click()">
+          <input type="file" id="galleryFileInput" accept=".jpg,.jpeg,.png,.webp" multiple>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:32px;height:32px;margin:0 auto 8px;display:block;opacity:0.4"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+          <span id="galleryDropLabel">Click or drag photos here</span>
+        </div>
+        <p style="font-size:0.75rem;color:var(--ink-soft);margin-bottom:10px;">⚠️ Please upload <strong>PNG or JPEG</strong> files only. Other formats will not be accepted.</p>
+        <div class="gup-preview" id="galleryPreview"></div>
+        <div class="gup-row">
+          <input type="text" class="gup-input" id="galleryCaption" placeholder="Caption (optional)">
+          <input type="text" class="gup-input" id="galleryCategory" placeholder="Category (e.g. Javits, Hotel, NYC)">
+        </div>
+        <div class="gup-progress" id="galleryProgress"><div class="gup-progress-bar" id="galleryProgressBar"></div></div>
+        <button class="gup-submit" id="gallerySubmitBtn" onclick="galleryUpload()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:14px;height:14px"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+          Upload
+        </button>
+        <div class="gup-msg" id="galleryUploadMsg"></div>
+      </div>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="gallery-empty" id="galleryEmpty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        Loading photos…
+      </div>
+    </div>
+    <div class="gallery-status" id="galleryStatus"></div>
+
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="glb-overlay" id="glbOverlay" onclick="glbClose(event)">
+  <div class="glb-box">
+    <button class="glb-close" onclick="glbClose(null, true)">✕</button>
+    <button class="glb-arrow prev" id="glbPrev" onclick="glbStep(-1)">&#8592;</button>
+    <button class="glb-arrow next" id="glbNext" onclick="glbStep(1)">&#8594;</button>
+    <img id="glbImg" src="" alt="">
+    <div class="glb-caption">
+      <span id="glbCaption"></span>
+      <span class="glb-counter" id="glbCounter"></span>
+    </div>
+    <div class="glb-dots" id="glbDots"></div>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
@@ -1046,6 +1273,288 @@
     el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     observer.observe(el);
   });
+</script>
+
+<!-- Supabase CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  /* ================================================================
+     GALLERY CONFIG — fill these in before deploying
+     ================================================================ */
+  const GALLERY_CONFIG = {
+    SUPABASE_URL:          'https://cqpptawvbdumutqjfefs.supabase.co',
+    SUPABASE_ANON_KEY:     'sb_publishable_IQxNMXfydeRzlMJAXYwAIg_W6anW2B6',
+    ADMIN_UPLOAD_PASSCODE: 'Hoover2026NYC',              // change this
+    STORAGE_BUCKET:        'trip-gallery',
+    TABLE_NAME:            'gallery_images',
+  };
+  /* ================================================================ */
+
+  /* ── Init Supabase ── */
+  let _sb = null;
+  function getSupabase() {
+    if (_sb) return _sb;
+    if (!GALLERY_CONFIG.SUPABASE_URL || GALLERY_CONFIG.SUPABASE_URL === 'YOUR_SUPABASE_URL') return null;
+    _sb = supabase.createClient(GALLERY_CONFIG.SUPABASE_URL, GALLERY_CONFIG.SUPABASE_ANON_KEY);
+    return _sb;
+  }
+
+  /* ── State ── */
+  let galleryUnlocked = false;
+  let galleryFiles = [];
+
+  /* ── Toggle upload panel ── */
+  function galleryToggleUpload() {
+    const panel = document.getElementById('galleryUploadPanel');
+    panel.classList.toggle('open');
+  }
+
+  /* ── Passcode check ── */
+  function galleryCheckPasscode() {
+    const val = document.getElementById('galleryPasscodeInput').value;
+    if (val === GALLERY_CONFIG.ADMIN_UPLOAD_PASSCODE) {
+      galleryUnlocked = true;
+      document.getElementById('galleryPasscodeGate').style.display = 'none';
+      document.getElementById('galleryUploadForm').style.display = 'block';
+      document.getElementById('galleryGrid').classList.add('gallery-unlocked');
+    } else {
+      document.getElementById('galleryPasscodeMsg').textContent = 'Incorrect passcode. Try again.';
+    }
+  }
+
+  /* ── File drop / select ── */
+  const dropZone = document.getElementById('galleryDropZone');
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault(); dropZone.classList.remove('drag-over');
+    handleFiles(e.dataTransfer.files);
+  });
+  document.getElementById('galleryFileInput').addEventListener('change', e => handleFiles(e.target.files));
+
+  function handleFiles(fileList) {
+    const allowed = ['image/jpeg','image/png','image/webp'];
+    galleryFiles = Array.from(fileList).filter(f => allowed.includes(f.type));
+    const preview = document.getElementById('galleryPreview');
+    preview.innerHTML = '';
+    if (!galleryFiles.length) {
+      document.getElementById('galleryDropLabel').textContent = 'No valid image files selected.';
+      return;
+    }
+    document.getElementById('galleryDropLabel').textContent = galleryFiles.length + ' file(s) ready';
+    galleryFiles.forEach(f => {
+      const img = document.createElement('img');
+      img.src = URL.createObjectURL(f);
+      preview.appendChild(img);
+    });
+  }
+
+  /* ── Upload ── */
+  async function galleryUpload() {
+    const sb = getSupabase();
+    if (!sb) { galleryMsg('Supabase is not configured yet.', 'error'); return; }
+    if (!galleryUnlocked) { galleryMsg('Unlock with passcode first.', 'error'); return; }
+    if (!galleryFiles.length) { galleryMsg('Please select at least one image.', 'error'); return; }
+
+    const caption  = document.getElementById('galleryCaption').value.trim();
+    const category = document.getElementById('galleryCategory').value.trim();
+    const btn      = document.getElementById('gallerySubmitBtn');
+    const progress = document.getElementById('galleryProgress');
+    const bar      = document.getElementById('galleryProgressBar');
+
+    btn.disabled = true;
+    progress.style.display = 'block';
+    galleryMsg('', '');
+
+    let uploaded = 0;
+    for (const file of galleryFiles) {
+      const ext      = file.name.split('.').pop();
+      const fileName = `${Date.now()}_${Math.random().toString(36).slice(2)}.${ext}`;
+      const path     = `uploads/${fileName}`;
+
+      /* Upload to storage */
+      const { error: upErr } = await sb.storage.from(GALLERY_CONFIG.STORAGE_BUCKET).upload(path, file, { cacheControl: '3600', upsert: false });
+      if (upErr) { galleryMsg('Upload failed: ' + upErr.message, 'error'); btn.disabled = false; return; }
+
+      /* Get public URL */
+      const { data: urlData } = sb.storage.from(GALLERY_CONFIG.STORAGE_BUCKET).getPublicUrl(path);
+      const imageUrl = urlData.publicUrl;
+
+      /* Save metadata */
+      const { error: dbErr } = await sb.from(GALLERY_CONFIG.TABLE_NAME).insert({
+        image_url:   imageUrl,
+        caption:     caption || null,
+        category:    category || null,
+        uploaded_at: new Date().toISOString(),
+      });
+      if (dbErr) { galleryMsg('Metadata save failed: ' + dbErr.message, 'error'); btn.disabled = false; return; }
+
+      uploaded++;
+      bar.style.width = Math.round((uploaded / galleryFiles.length) * 100) + '%';
+    }
+
+    galleryMsg(`${uploaded} photo${uploaded > 1 ? 's' : ''} uploaded successfully!`, 'success');
+    btn.disabled = false;
+    galleryFiles = [];
+    document.getElementById('galleryPreview').innerHTML = '';
+    document.getElementById('galleryCaption').value = '';
+    document.getElementById('galleryCategory').value = '';
+    document.getElementById('galleryDropLabel').textContent = 'Click or drag photos here (jpg, png, webp)';
+    setTimeout(() => { progress.style.display = 'none'; bar.style.width = '0%'; }, 800);
+    galleryLoadImages(); /* refresh grid */
+  }
+
+  function galleryMsg(text, type) {
+    const el = document.getElementById('galleryUploadMsg');
+    el.textContent = text;
+    el.className = 'gup-msg ' + (type || '');
+  }
+
+  async function galleryDeletePhoto(e, id, storagePath, btn) {
+    e.stopPropagation();
+    if (!confirm('Delete this photo? This cannot be undone.')) return;
+    const sb = getSupabase();
+    if (!sb) return;
+    btn.disabled = true;
+    btn.textContent = '…';
+    // Delete from DB
+    const { error: dbErr } = await sb.from(GALLERY_CONFIG.TABLE_NAME).delete().eq('id', id);
+    if (dbErr) { alert('Delete failed: ' + dbErr.message); btn.disabled = false; btn.textContent = '✕'; return; }
+    // Delete from storage
+    if (storagePath) await sb.storage.from(GALLERY_CONFIG.STORAGE_BUCKET).remove([storagePath]);
+    // Remove card from DOM
+    btn.closest('.gallery-card').remove();
+    // Update count
+    const remaining = document.querySelectorAll('#galleryGrid .gallery-card').length;
+    document.getElementById('galleryStatus').textContent = remaining ? remaining + ' photo' + (remaining > 1 ? 's' : '') : '';
+    if (!remaining) {
+      document.getElementById('galleryEmpty').style.display = '';
+      document.getElementById('galleryEmpty').innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>No photos yet. Be the first to upload a memory!';
+    }
+  }
+
+  /* ── Load & render gallery ── */
+  async function galleryLoadImages() {
+    const sb = getSupabase();
+    const grid   = document.getElementById('galleryGrid');
+    const empty  = document.getElementById('galleryEmpty');
+    const status = document.getElementById('galleryStatus');
+
+    if (!sb) {
+      empty.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Gallery will appear here once Supabase is configured.';
+      return;
+    }
+
+    status.textContent = 'Loading photos…';
+    const { data, error } = await sb
+      .from(GALLERY_CONFIG.TABLE_NAME)
+      .select('*')
+      .order('uploaded_at', { ascending: false });
+
+    if (error) {
+      status.textContent = 'Could not load gallery: ' + error.message;
+      return;
+    }
+
+    /* Remove existing cards (keep empty placeholder) */
+    grid.querySelectorAll('.gallery-card').forEach(c => c.remove());
+
+    if (!data || data.length === 0) {
+      empty.style.display = '';
+      empty.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>No photos yet. Be the first to upload a memory!';
+      status.textContent = '';
+      return;
+    }
+
+    empty.style.display = 'none';
+    data.forEach(row => {
+      const card = document.createElement('div');
+      card.className = 'gallery-card';
+      // Extract storage path from URL for deletion
+      const pathMatch = row.image_url.match(/\/trip-gallery\/(.+)$/);
+      const storagePath = pathMatch ? pathMatch[1] : null;
+      card.innerHTML = `
+        <div class="gallery-card-inner">
+          <img src="${row.image_url}" alt="${row.caption || 'Trip photo'}" loading="lazy">
+          <button class="gallery-card-delete" title="Delete photo" onclick="galleryDeletePhoto(event, '${row.id}', '${storagePath}', this)">✕</button>
+        </div>
+        <div class="gallery-card-caption">${row.caption || (row.category || '')}</div>`;
+      card.querySelector('img').addEventListener('click', () => glbOpen(row.image_url, row.caption || row.category || ''));
+      grid.appendChild(card);
+    });
+    status.textContent = data.length + ' photo' + (data.length > 1 ? 's' : '');
+  }
+
+  /* ── Lightbox / Carousel ── */
+  let glbItems = [];   // {src, caption}
+  let glbIndex = 0;
+
+  function glbOpen(src, caption) {
+    // Build items array from current grid
+    glbItems = Array.from(document.querySelectorAll('#galleryGrid .gallery-card img'))
+      .map(img => ({
+        src: img.src,
+        caption: img.closest('.gallery-card').querySelector('.gallery-card-caption').textContent
+      }));
+    glbIndex = glbItems.findIndex(i => i.src === src);
+    if (glbIndex < 0) glbIndex = 0;
+    glbRender();
+    document.getElementById('glbOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function glbRender() {
+    const item = glbItems[glbIndex];
+    const img  = document.getElementById('glbImg');
+    img.classList.add('glb-fade');
+    setTimeout(() => {
+      img.src = item.src;
+      img.onload = () => img.classList.remove('glb-fade');
+    }, 150);
+    document.getElementById('glbCaption').textContent = item.caption || '';
+    document.getElementById('glbCounter').textContent = (glbIndex + 1) + ' / ' + glbItems.length;
+    document.getElementById('glbPrev').disabled = glbIndex === 0;
+    document.getElementById('glbNext').disabled = glbIndex === glbItems.length - 1;
+    // Dots
+    const dotsEl = document.getElementById('glbDots');
+    dotsEl.style.display = glbItems.length <= 1 ? 'none' : '';
+    if (glbItems.length > 1) {
+      dotsEl.innerHTML = glbItems.map((_, i) =>
+        `<button class="glb-dot ${i === glbIndex ? 'active' : ''}" onclick="glbGoTo(${i})"></button>`
+      ).join('');
+    }
+  }
+
+  function glbStep(dir) {
+    const next = glbIndex + dir;
+    if (next < 0 || next >= glbItems.length) return;
+    glbIndex = next;
+    glbRender();
+  }
+
+  function glbGoTo(i) {
+    glbIndex = i;
+    glbRender();
+  }
+
+  function glbClose(e, force) {
+    if (force || (e && e.target === document.getElementById('glbOverlay'))) {
+      document.getElementById('glbOverlay').classList.remove('open');
+      document.getElementById('glbImg').src = '';
+      document.body.style.overflow = '';
+    }
+  }
+
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('glbOverlay').classList.contains('open')) return;
+    if (e.key === 'Escape')      glbClose(null, true);
+    if (e.key === 'ArrowLeft')   glbStep(-1);
+    if (e.key === 'ArrowRight')  glbStep(1);
+  });
+
+  /* ── Boot ── */
+  galleryLoadImages();
 </script>
 </body>
 </html>
